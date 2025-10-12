@@ -1,6 +1,0 @@
-Flask
-python-magic-bin; platform_system == 'Windows'
-python-magic; platform_system != 'Windows'
-oletools
-PyPDF2
-python-docx
