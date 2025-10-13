@@ -4,4 +4,4 @@ python-magic; platform_system != 'Windows'
 oletools
 PyPDF2
 python-docx
-flask google-genai
+google-genai
