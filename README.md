@@ -6,6 +6,9 @@ A **cybersecurity document scanner** built with Python and Flask.
 Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryptographic hashes, and get AI-powered threat analysis using the **Google Gemini API**.
 
 ---
+<p>
+      <img src="https://i.ibb.co/VCpbKjp/Nl-Pcf-EAG-Rq-N6-Ss-T-0-TNIt1-ZVezq-Ihs7n4-IEfbo9-JNOn-Gkhz-V-N8h9tb-H7-Tvp-Q0.jpg" width=500>
+</p>
 
 ## Table of Contents
 - [Features](#features)
