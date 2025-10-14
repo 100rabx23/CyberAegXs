@@ -7,7 +7,7 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 
 ---
 <p>
-      <img src="https://i.ibb.co/VCpbKjp/Nl-Pcf-EAG-Rq-N6-Ss-T-0-TNIt1-ZVezq-Ihs7n4-IEfbo9-JNOn-Gkhz-V-N8h9tb-H7-Tvp-Q0.jpg" width=500>
+      <img src="https://i.ibb.co/LDxx3F65/Chat-GPT-Image-Aug-3-2025-12-00-01-AM.png" width=500>
 </p>
 
 ## Table of Contents
