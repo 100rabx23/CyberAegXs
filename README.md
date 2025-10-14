@@ -46,4 +46,4 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 1. **Clone the repository**
    ```bash
    git clone https://github.com/100rabx23/CyberAegXs.git
-   cd CyberDocScanner
+   cd CyberAegXs
