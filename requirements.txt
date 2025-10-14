@@ -5,3 +5,16 @@ oletools
 PyPDF2
 python-docx
 google-genai
+psutil
+GPUtil
+easygui
+threading
+winreg
+PySide6
+pefile
+pickle
+joblib
+sqlite3
+datetime
+scikit-learn==0.24.1
+
