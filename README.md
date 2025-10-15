@@ -1,49 +1,16 @@
-# 🛡 CyberAegXs | Virus scanner
+# React + Vite
 
-![Python](https://img.shields.io/badge/Python-3.13-blue) ![Flask](https://img.shields.io/badge/Flask-2.3-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-A **cybersecurity document scanner** built with Python and Flask.  
-Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryptographic hashes, and get AI-powered threat analysis using the **Google Gemini API**.
+Currently, two official plugins are available:
 
----
-<p>
-      <img src="https://i.ibb.co/LDxx3F65/Chat-GPT-Image-Aug-3-2025-12-00-01-AM.png" width=150>
-</p>
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Table of Contents
-- [Features](#features)
-- [Demo](#demo)
-- [Installation](#installation)
-- [How It Works](#how-it-works)
-- [Example Output](#example-output)
-- [Tech Stack](#tech-stack)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Features
+## Expanding the ESLint configuration
 
-- 🔹 Upload and scan documents (`.pdf`, `.docx`, `.xlsx`)  
-- 🔹 Compute MD5, SHA1, SHA256 hashes  
-- 🔹 Detect suspicious patterns: macros, scripts, embedded JavaScript  
-- 🔹 AI Threat Analysis using **Google Gemini API**  
-- 🔹 Modern cyber-themed UI for easy scanning  
-
----
-
-## Demo
-
-![CyberDoc Scanner Demo](screenshot.png)  
-
-> Modern, clean interface with instant scan results.
-
----
-
-## Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/100rabx23/CyberAegXs.git
-   cd CyberAegXs
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

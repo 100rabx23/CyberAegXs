@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberAegXs - AI Security Scanner</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font and layout centering */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Softer, lighter background */
+            color: #1f2937;
+        }
+        /* Custom animation for the slow shield rotation */
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Style for the pre-formatted report text */
+        #report-content {
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        /* Subtle upload card hover effect */
+        .upload-card-hover:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+    </style>
+    <!-- Load Lucide icons from CDN for simplicity -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold text-gray-900 flex items-center justify-center">
+                <!-- Custom CyberAegXs Logo SVG -->
+                <svg viewBox="0 0 24 24" fill="none" class="w-10 h-10 mr-4 text-indigo-600" xmlns="log">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2.5C6.75 2.5 2.5 6.75 2.5 12C2.5 17.25 6.75 21.5 12 21.5C17.25 21.5 21.5 17.25 21.5 12C21.5 6.75 17.25 2.5 12 2.5ZM12 4.5C7.864 4.5 4.5 7.864 4.5 12C4.5 16.136 7.864 19.5 12 19.5C16.136 19.5 19.5 16.136 19.5 12C19.5 7.864 16.136 4.5 12 4.5ZM12 8C10.999 8 10.198 8.643 9.924 9.539L12 11.539L14.076 9.539C13.802 8.643 13.001 8 12 8Z" fill="#3B82F6"/>
+                    <path d="M14.5 13.5C14.5 14.88 13.38 16 12 16C10.62 16 9.5 14.88 9.5 13.5C9.5 12.12 10.62 11 12 11C13.38 11 14.5 12.12 14.5 13.5ZM12 14.75L14.076 12.75L12 10.75L9.924 12.75L12 14.75Z" fill="#1D4ED8"/>
+                    <path d="M12.5 7.5L12 7L11.5 7.5L12 8L12.5 7.5Z" fill="#3B82F6"/>
+                </svg>
+                CyberAegXs
+            </h1>
+            <p class="mt-3 text-xl text-gray-600 font-light">
+                Securely analyze your documents with **Aegis-level protection** powered by Google Gemini.
+            </p>
+        </header>
+
+        <!-- File Upload Area - More dynamic styling -->
+        <div class="p-8 bg-white rounded-2xl shadow-xl border-2 border-dashed border-indigo-400/50 hover:border-indigo-600 transition duration-500 upload-card-hover">
+            <input
+                type="file"
+                accept=".pdf"
+                onchange="handleFileUpload(event)"
+                id="pdf-upload"
+                class="hidden"
+            />
+            <label for="pdf-upload" class="cursor-pointer block text-center">
+                <svg class="w-12 h-12 text-indigo-600 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5"><path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V3m0 0l-5.25 5.25M12 3l5.25 5.25m-6.75 7.5h.008v.008h-.008v-.008zm-5.6 0A.75.75 0 016.75 18h10.5a.75.75 0 01-.75.75H6.75v-.75zM4 17.25a.75.75 0 01.75-.75h14.5a.75.75 0 01.75.75v1.5a.75.75 0 01-.75.75H4.75a.75.75 0 01-.75-.75v-1.5z"/></svg>
+                <p class="mt-3 text-2xl font-semibold text-gray-900">
+                    Drop PDF Here or Click to Upload
+                </p>
+                <p class="text-base text-gray-500 mt-1">
+                    Maximum secure file size: 10MB. All processing is private and client-side.
+                </p>
+            </label>
+        </div>
+
+        <!-- Main Content Area (Hidden until file is loaded) -->
+        <div id="main-content-area" class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8 hidden">
+            
+            <!-- Column 1: Scan Result Card -->
+            <div class="lg:col-span-1">
+                <div id="scan-result-card" class="p-6 rounded-2xl shadow-xl transition duration-500 bg-white border border-gray-100">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-2xl font-bold text-gray-800">Scan Status</h2>
+                        <div id="status-icon">
+                            <!-- Icon rendered here by JS -->
+                        </div>
+                    </div>
+                    <p id="file-name-display" class="mt-4 text-sm font-medium text-gray-700 truncate">
+                        No file loaded.
+                    </p>
+
+                    <div class="mt-5">
+                        <p class="text-lg font-semibold text-gray-800">Local Risk Assessment:</p>
+                        <div id="local-risk-display" class="mt-1 inline-block px-4 py-1.5 rounded-full text-white font-bold text-sm shadow-md bg-gray-500">
+                            Awaiting Scan
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex space-x-3">
+                        <button id="btn-view-report" onclick="setViewMode('report')" class="flex-1 py-2 text-sm font-bold rounded-xl transition duration-300 bg-indigo-600 text-white shadow-lg hover:bg-indigo-700">
+                            Security Report
+                        </button>
+                        <button id="btn-view-original" onclick="setViewMode('original')" class="flex-1 py-2 text-sm font-bold rounded-xl transition duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                            View Original PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: Content View (Report/PDF) -->
+            <div class="lg:col-span-2">
+                <div id="report-view" class="p-8 bg-white rounded-2xl shadow-xl h-[70vh] flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-9 0V3h4v2m-4 0h4"></path></svg>
+                        Detailed CyberAegXs Analysis Report
+                    </h3>
+                    
+                    <!-- Report Content Area -->
+                    <div id="report-content" class="flex-grow overflow-y-auto text-gray-700 leading-relaxed space-y-4 pr-2">
+                        <!-- Content inserted here by JS -->
+                        <p class="text-center text-gray-500 pt-16">Upload a PDF to begin the scan.</p>
+                    </div>
+
+                    <button id="btn-download" onclick="handleDownloadCleaned()" class="mt-6 w-full flex items-center justify-center py-3 px-6 rounded-xl text-white font-bold transition duration-300 transform hover:scale-[1.01] shadow-lg bg-gray-500 hidden">
+                        <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Download (Simulated Virus-Free Copy)
+                    </button>
+                </div>
+
+                <div id="original-view" class="p-8 bg-gray-100 rounded-2xl shadow-xl h-[70vh] flex flex-col hidden">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.552-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.448.894L15 14M5 18H3a2 2 0 01-2-2V8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5z"></path></svg>
+                        Original PDF View (Unfiltered)
+                    </h3>
+                    <div class="flex-grow rounded-xl overflow-hidden border border-gray-300">
+                        <embed id="pdf-embed" src="" type="application/pdf" width="100%" height="100%" class="w-full h-full" />
+                    </div>
+                    <p class="mt-3 text-sm font-medium text-yellow-600 text-center bg-yellow-50 p-2 rounded-lg">
+                        ⚠️ **Caution:** This is the original, unverified file. Always refer to the Security Report before proceeding.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Messages -->
+    <div id="app-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full transform transition-all scale-100 hover:scale-[1.01]">
+            <h4 class="text-2xl font-extrabold text-indigo-600 mb-4 flex items-center">
+                <svg class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                System Alert
+            </h4>
+            <p id="modal-message-text" class="text-gray-700 mb-5"></p>
+            <button onclick="hideModal()" class="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition shadow-md">
+                Acknowledge
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- Global State ---
+        let file = null;
+        let fileUrl = null;
+        let scanStatus = 'idle'; // 'idle', 'scanning', 'complete', 'error'
+        let localScanResult = null; // 'Clean', 'Low Risk', 'High Risk'
+        let report = null;
+        let viewMode = 'report'; // 'report', 'original'
+
+        // --- Configuration ---
+        const MODEL_NAME = "gemini-2.5-flash-preview-05-20";
+        // NOTE: If running this outside a secure environment (like the Canvas preview),
+        // you MUST paste your personal Google AI API Key here to authenticate the request.
+        // If you don't have one, keep it as "" and run the app in the Canvas preview.
+        const API_KEY = "AIzaSyBoEdq4N3t_xjjYqNOBNydaqHMy5jAxPsw"; // <<-- PASTE YOUR PERSONAL KEY HERE IF RUNNING LOCALLY -->>
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+        const MAX_FILE_SIZE_MB = 10;
+        const MAX_PREVIEW_BYTES = 512;
+
+        // --- Utility Functions ---
+
+        /**
+         * Simple client-side simulation of a local security check.
+         */
+        function runLocalScanSimulation(uploadedFile) {
+            const sizeMB = uploadedFile.size / (1024 * 1024);
+            // Simulate risk based on size and suspicious keywords
+            const hasSuspectName = uploadedFile.name.toLowerCase().includes('invoice') || uploadedFile.name.toLowerCase().includes('secure');
+
+            if (sizeMB > 5 || hasSuspectName) {
+                return 'High Risk';
+            }
+            if (sizeMB > 1) {
+                return 'Low Risk';
+            }
+            return 'Clean';
+        }
+
+        /**
+         * Maps risk level to Tailwind color classes.
+         */
+        function getRiskColor(risk) {
+            switch (risk) {
+                case 'High Risk': return 'bg-red-600 hover:bg-red-700 ring-red-300';
+                case 'Low Risk': return 'bg-yellow-500 hover:bg-yellow-600 ring-yellow-300';
+                case 'Clean': return 'bg-green-600 hover:bg-green-700 ring-green-300';
+                default: return 'bg-gray-500 hover:bg-gray-600 ring-gray-300';
+            }
+        }
+
+        /**
+         * Displays a custom modal message.
+         */
+        function showModal(message) {
+            document.getElementById('modal-message-text').textContent = message;
+            document.getElementById('app-modal').classList.remove('hidden');
+        }
+
+        /**
+         * Hides the custom modal.
+         */
+        function hideModal() {
+            document.getElementById('app-modal').classList.add('hidden');
+        }
+
+        /**
+         * Executes API call with exponential backoff.
+         */
+        async function callApi(payload, maxRetries = 5) {
+            let delay = 1000;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+
+                    if (!response.ok) {
+                        const errorBody = await response.text();
+                        console.error("API response error:", response.status, errorBody);
+                        throw new Error(`HTTP error! Status: ${response.status}. Details: ${errorBody.substring(0, 100)}...`);
+                    }
+
+                    const result = await response.json();
+                    return result?.candidates?.[0]?.content?.parts?.[0]?.text || "Error: Could not generate report content.";
+
+                } catch (error) {
+                    if (i === maxRetries - 1) {
+                        console.error("API call failed after max retries:", error);
+                        // Make the error message more user-friendly
+                        let userFriendlyError = "Failed to connect to the analysis model.";
+                        if (error.message.includes("400")) {
+                            userFriendlyError = "Model Error (400): Check if your API Key is valid and correctly placed.";
+                        } else if (error.message.includes("401")) {
+                            userFriendlyError = "Authentication Error (401): API Key is likely invalid or missing.";
+                        } else if (error.message.includes("429")) {
+                            userFriendlyError = "Rate Limit Error (429): You are sending requests too quickly.";
+                        }
+                        throw new Error(userFriendlyError);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // Exponential backoff
+                }
+            }
+        }
+
+        // --- Core Application Logic ---
+
+        /**
+         * Generates a detailed security report using the Gemini API.
+         */
+        async function generateLLMReport(fileSummary, localRisk) {
+            const systemPrompt = `You are a world-class cybersecurity and threat analyst for a system named CyberAegXs. Based on the provided file characteristics and local scan result, generate a comprehensive security assessment. The report must be concise, in four paragraphs, and use clear, authoritative language: 
+            1. **Summary of Findings:** State the computed risk level (Clean, Low Risk, High Risk) and the primary reasons based on the characteristics (file size, filename heuristics, byte sample).
+            2. **Potential Threats:** Describe 2-3 common PDF threats (e.g., embedded JavaScript execution, remote file inclusion, link phishing) that could be relevant to this risk profile, explaining the theoretical danger.
+            3. **Remediation & Next Steps:** Provide practical, actionable advice on how the user can safely handle or neutralize the document, such as verifying the sender or using a safe PDF viewer.
+            4. **CyberAegXs Assurance:** A final concluding sentence assuring the user that the file is safe to download from this tool (as a 'cleaned' version) or to delete it based on your analysis.`;
+
+            const userQuery = `Analyze this PDF file. Its characteristics are:
+            Name: ${fileSummary.name}, Size: ${fileSummary.size} bytes. Initial content sample (first ${MAX_PREVIEW_BYTES} bytes, hex dump): ${fileSummary.sample}
+            Simulated Local Scan Result: ${localRisk}
+            
+            Please generate the detailed security report now.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                },
+            };
+
+            try {
+                const reportText = await callApi(payload);
+                report = reportText;
+            } catch (err) {
+                report = `LLM Analysis Failed: ${err.message}`;
+                scanStatus = 'error';
+                console.error(err);
+            }
+        }
+
+        /**
+         * Renders the UI based on the current state variables.
+         */
+        function renderUI() {
+            const mainContentArea = document.getElementById('main-content-area');
+            const statusIconDiv = document.getElementById('status-icon');
+            const localRiskDiv = document.getElementById('local-risk-display');
+            const reportContentDiv = document.getElementById('report-content');
+            const pdfEmbed = document.getElementById('pdf-embed');
+            const reportView = document.getElementById('report-view');
+            const originalView = document.getElementById('original-view');
+            const btnDownload = document.getElementById('btn-download');
+            const scanCard = document.getElementById('scan-result-card');
+            const btnReport = document.getElementById('btn-view-report');
+            const btnOriginal = document.getElementById('btn-view-original');
+            
+            // 1. Show/Hide Main Content Area
+            if (file) {
+                mainContentArea.classList.remove('hidden');
+                document.getElementById('file-name-display').textContent = file.name;
+            } else {
+                mainContentArea.classList.add('hidden');
+                reportContentDiv.innerHTML = '<p class="text-center text-gray-500 pt-16">Upload a PDF to begin the scan.</p>';
+            }
+
+            // 2. Update Risk Card Styles and Content
+            scanCard.className = `p-6 rounded-2xl shadow-xl transition duration-500 bg-white border border-gray-100 ${localScanResult ? getRiskColor(localScanResult).replace('hover:bg-', '').replace('bg-', 'ring-4 ring-opacity-50 ring-') : ''}`;
+            
+            // 3. Update Status Icon
+            let iconHtml = '';
+            if (scanStatus === 'scanning') {
+                iconHtml = `<svg class="w-12 h-12 text-indigo-500 animate-spin-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                localRiskDiv.textContent = 'Analyzing...';
+                localRiskDiv.className = `mt-1 inline-block px-4 py-1.5 rounded-full text-white font-bold text-sm shadow-md bg-gray-500`;
+            } else if (scanStatus === 'complete') {
+                const iconColor = localScanResult === 'High Risk' ? 'text-red-600' : localScanResult === 'Low Risk' ? 'text-yellow-500' : 'text-green-600';
+                const iconPath = localScanResult === 'High Risk' ? 'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z' : 
+                                 localScanResult === 'Low Risk' ? 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.772-1.333-2.694-1.333-3.464 0L3.332 16a2 2 0 001.732 3z' : 
+                                 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.047 12.004 12.004 0 00-.518 1.958 12.004 12.004 0 00-.518 1.958 12.004 12.004 0 00-.518 1.958 12.004 12.004 0 00-.518 1.958A12.004 12.004 0 004.882 17.056 11.955 11.955 0 0112 21.056c3.125 0 6.096-.94 8.43-2.612a12.004 12.004 0 00.518-1.958 12.004 12.004 0 00.518-1.958 12.004 12.004 0 00.518-1.958 12.004 12.004 0 00.518-1.958A11.955 11.955 0 0112 2.944z';
+                iconHtml = `<svg class="w-12 h-12 ${iconColor}" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="${iconPath}"></path></svg>`;
+                
+                localRiskDiv.textContent = localScanResult;
+                localRiskDiv.className = `mt-1 inline-block px-4 py-1.5 rounded-full text-white font-bold text-sm shadow-md ${getRiskColor(localScanResult)}`;
+
+            } else if (scanStatus === 'error') {
+                iconHtml = `<svg class="w-12 h-12 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+                localRiskDiv.textContent = 'Error';
+                localRiskDiv.className = `mt-1 inline-block px-4 py-1.5 rounded-full text-white font-bold text-sm shadow-md ${getRiskColor('High Risk')}`;
+            }
+            statusIconDiv.innerHTML = iconHtml;
+
+            // 4. Update View Mode
+            // Update button styles for dynamic feedback
+            const baseBtnClasses = "flex-1 py-2 text-sm font-bold rounded-xl transition duration-300 shadow-md";
+            
+            if (viewMode === 'report') {
+                reportView.classList.remove('hidden');
+                originalView.classList.add('hidden');
+                btnReport.className = `${baseBtnClasses} bg-indigo-600 text-white hover:bg-indigo-700`;
+                btnOriginal.className = `${baseBtnClasses} bg-gray-200 text-gray-700 hover:bg-gray-300`;
+            } else {
+                reportView.classList.add('hidden');
+                originalView.classList.remove('hidden');
+                btnOriginal.className = `${baseBtnClasses} bg-indigo-600 text-white hover:bg-indigo-700`;
+                btnReport.className = `${baseBtnClasses} bg-gray-200 text-gray-700 hover:bg-gray-300`;
+                pdfEmbed.src = fileUrl; // Update PDF embed source on switch
+            }
+
+            // 5. Update Report Content and Download Button
+            if (scanStatus === 'scanning') {
+                reportContentDiv.innerHTML = `
+                    <div class="text-center p-16">
+                        <svg class="animate-spin h-10 w-10 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <p class="mt-4 text-lg font-medium text-indigo-600">CyberAegXs is performing deep LLM analysis...</p>
+                    </div>`;
+                btnDownload.classList.add('hidden');
+            } else if (scanStatus === 'complete' || scanStatus === 'error') {
+                reportContentDiv.innerHTML = `<pre id="report-text">${report}</pre>`; // Use <pre> for LLM output text
+                btnDownload.classList.remove('hidden');
+                btnDownload.className = `mt-6 w-full flex items-center justify-center py-3 px-6 rounded-xl text-white font-bold transition duration-300 transform hover:scale-[1.01] shadow-xl ${getRiskColor('Clean')}`;
+            }
+        }
+
+        /**
+         * Changes the current view mode and updates the UI.
+         */
+        function setViewMode(mode) {
+            viewMode = mode;
+            renderUI();
+        }
+
+        /**
+         * Handles the file upload event and initiates the scan process.
+         */
+        async function handleFileUpload(event) {
+            const uploadedFile = event.target.files[0];
+            if (!uploadedFile) return;
+
+            if (uploadedFile.type !== 'application/pdf') {
+                showModal("Please upload a valid PDF file (.pdf).");
+                return;
+            }
+
+            if (uploadedFile.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+                showModal(`File size exceeds the maximum limit of ${MAX_FILE_SIZE_MB}MB. Please try a smaller file.`);
+                return;
+            }
+
+            // Check for API Key presence
+            if (API_KEY === "" && window.location.protocol !== 'https:') {
+                showModal("API Key Required: The AI analysis cannot run locally because the API key is missing. Please insert your personal key in the code's script block.");
+                scanStatus = 'error';
+                renderUI();
+                return;
+            }
+
+
+            // Reset state
+            file = uploadedFile;
+            // Revoke previous URL to prevent memory leak
+            if (fileUrl) URL.revokeObjectURL(fileUrl);
+            fileUrl = URL.createObjectURL(uploadedFile);
+            scanStatus = 'scanning';
+            report = null;
+            localScanResult = null;
+            viewMode = 'report';
+            renderUI();
+
+            // Start local simulation
+            const risk = runLocalScanSimulation(uploadedFile);
+            localScanResult = risk;
+            
+            // Read a small sample of the file content for LLM context
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const arrayBuffer = reader.result;
+                // Convert bytes to hex string for LLM analysis prompt
+                const fileSample = Array.from(new Uint8Array(arrayBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+
+                const fileSummary = {
+                    name: uploadedFile.name,
+                    size: uploadedFile.size,
+                    sample: fileSample
+                };
+
+                await generateLLMReport(fileSummary, risk);
+                scanStatus = 'complete';
+                renderUI();
+            };
+
+            // Read the file as an ArrayBuffer and take a slice for the prompt
+            reader.readAsArrayBuffer(uploadedFile.slice(0, MAX_PREVIEW_BYTES));
+        }
+        
+        /**
+         * Simulates downloading a "cleaned" PDF.
+         */
+        function handleDownloadCleaned() {
+            if (file && fileUrl) {
+                const a = document.createElement('a');
+                a.href = fileUrl;
+                a.download = `SAFE_${file.name.replace('.pdf', '')}_cleaned_by_CyberAegXs.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                showModal(`Successfully initiated download of the 'SAFE' version of ${file.name}.`);
+            } else {
+                showModal("No file is currently loaded to download.");
+            }
+        }
+
+        window.onload = () => {
+            // Initialize Lucide icons
+            lucide.createIcons();
+            // Initial render
+            renderUI(); 
+        };
+
+    </script>
+</body>
+</html>
