@@ -5,7 +5,7 @@ import pickle, joblib
 from db import DB
 
 
-
+#antivirus for the project PBL
 
 
 class ScanVirusAI:
