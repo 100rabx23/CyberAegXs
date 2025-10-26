@@ -9,7 +9,7 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 <p>
       <img src="https://i.ibb.co/LDxx3F65/Chat-GPT-Image-Aug-3-2025-12-00-01-AM.png" width=150>
 </p>
-
+```
 ## Table of Contents
 - [Features](#features)
 - [Demo](#demo)
@@ -20,7 +20,7 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
-
+```
 ---
 
 ## Features
