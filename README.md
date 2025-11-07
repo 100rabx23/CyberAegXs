@@ -48,3 +48,6 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
    ```bash
    git clone https://github.com/100rabx23/CyberAegXs.git
    cd CyberAegXs
+
+
+updated!
