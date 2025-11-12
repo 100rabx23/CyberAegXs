@@ -2,10 +2,7 @@ import os, time, threading
 import hashlib, pefile, array, math
 import pickle, joblib
 
-from db import DB
-
-
-#antivirus for the project PBL
+from db import DB......
 
 
 class ScanVirusAI:
@@ -218,6 +215,7 @@ class ScanVirus(ScanVirusAI):
 
 		elif status == 'file':
 			self.scanning(path)
+
 
 
 
