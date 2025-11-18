@@ -27,7 +27,7 @@ def create_clean_pdf(filename, content, i):
 
 # Define the 5 PDFs to create
 pdf_specs = [
-    ("test_pdf_1_simple.pdf", "Content for testing basic file upload and scanning."),
+    ("test_pdf_2_simple.pdf", "Content for testing basic file upload and scanning."),
     ("test_pdf_2_report.pdf", "Document is a summary of clean findings. Contains no suspicious keywords."),
     ("test_pdf_3_low_risk.pdf", "This document tests the AI's ability to classify 'Low' risk. Static scan should show no findings."),
     ("test_pdf_4_size_test.pdf", "A slightly larger document to test file handling."),
