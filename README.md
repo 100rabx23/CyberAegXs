@@ -1,7 +1,7 @@
 # 🛡 CyberAegXs | Virus scanner
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue) ![Flask](https://img.shields.io/badge/Flask-2.3-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
-
+****
 A **cybersecurity document scanner** built with Python and Flask.  
 Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryptographic hashes, and get AI-powered threat analysis using the **Google Gemini API**.
 *****
