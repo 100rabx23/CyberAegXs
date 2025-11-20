@@ -11,7 +11,7 @@ UPLOAD_FOLDER = "uploads"
 GEMINI_API_KEY = "AIzaSyDMpJacgbXlDr688eaH8ltTnZ0a7HoWtw8" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Initialize the Gemini Client globally
+# Initialize the Gemini Client
 try:
     # Ensure client initialization is attempted even with a placeholder key
     client = genai.Client(api_key=GEMINI_API_KEY)
