@@ -6,7 +6,6 @@ PyPDF2
 python-docx
 google-genai
 psutil
-GPUtil
 easygui
 threading
 winreg
