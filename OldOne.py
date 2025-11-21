@@ -9,7 +9,7 @@ from google.genai.errors import APIError
 #__________
 UPLOAD_FOLDER = "uploads"
 # IMPORTANT: This key is a placeholder. You must use your valid key here.
-GEMINI_API_KEY = "AIzaSyDMpJacgbXlDr688eaH8ltTnZ0a7HoWtw8" 
+GEMINI_API_KEY = "YOUR_API_KEY" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Initialize the Gemini Client
