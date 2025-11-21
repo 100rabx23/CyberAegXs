@@ -142,6 +142,9 @@ def scan_for_keywords(file_path):
 # ============================
 # FUNCTION: Gemini AI Threat Analysis (SDK Implementation)
 # ============================
+
+
+
 def analyze_with_gemini(text_summary):
     """Uses the Gemini SDK to analyze the scan summary for threat assessment."""
     if not client:
