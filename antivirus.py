@@ -2,7 +2,7 @@ import os, time, threading
 import hashlib, pefile, array, math
 import pickle, joblib
 
-from db import DB......
+from db import DB
 
 
 class ScanVirusAI:
