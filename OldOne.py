@@ -119,7 +119,7 @@ def generate_hashes(file_path):
         hashes["SHA256"] = hashlib.sha256(data).hexdigest()
     return hashes
 
-# ============================
+# =================================
 # FUNCTION: Basic Keyword Scan
 # ============================
 def scan_for_keywords(file_path):
