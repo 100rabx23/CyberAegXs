@@ -3,8 +3,7 @@ import os, hashlib, re
 from google import genai
 from google.genai.errors import APIError 
 
-# CONFIGURATION
-# ============================
+# CONFIGURATION
 UPLOAD_FOLDER = "uploads"
 # IMPORTANT: This key is a placeholder. You must use your valid key here.
 GEMINI_API_KEY = "AIzaSyDMpJacgbXlDr688eaH8ltTnZ0a7HoWtw8" 
