@@ -1,4 +1,4 @@
-# 🛡 CyberAegXs | Virus scanner
+# 🛡 CyberAegXs | Virus scanner !
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue) ![Flask](https://img.shields.io/badge/Flask-2.3-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
 ****
