@@ -1,5 +1,5 @@
 
-##==> IMPORT LIBRARIES
+##==>
 ####################################################
 import datetime
 import os
