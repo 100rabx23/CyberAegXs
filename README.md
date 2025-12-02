@@ -1,6 +1,5 @@
 # 🛡 CyberAegXs | Virus Scanner !
 
-Dear Student,Click on below URL to Reset Password http://studentportal.silveroakuni.ac.in/UMSStudents/rp?id=55E19E1E-E6CE-4E10-86D9-4EFCB75C03F0 -Silver Oak University
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue) ![Flask](https://img.shields.io/badge/Flask-2.3-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
 ****
