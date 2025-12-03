@@ -4,7 +4,7 @@ from google import genai
 from google.genai.errors import APIError 
 
 # CONFIGURATION
-# ₹₹₹₹₹₹₹₹₹₹
+
 
 #__________
 UPLOAD_FOLDER = "uploads"
