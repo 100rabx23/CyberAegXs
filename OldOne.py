@@ -2,8 +2,7 @@ from flask import Flask, render_template_string, request
 import os, hashlib, re
 from google import genai
 from google.genai.errors import APIError 
-
-# CONFIGURATION
+
 
 UPLOAD_FOLDER = "uploads"
 GEMINI_API_KEY = "YOUR_API_KEY" 
