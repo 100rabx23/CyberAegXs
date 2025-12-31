@@ -6,7 +6,7 @@ from google.genai.errors import APIError
 # CONFIGURATION
 
 
-#________
+#_____
 UPLOAD_FOLDER = "uploads"
 # IMPORTANT: This key is a placeholder. You must use your valid key here.
 GEMINI_API_KEY = "YOUR_API_KEY" 
