@@ -5,8 +5,7 @@ from google.genai.errors import APIError
 
 # CONFIGURATION
 
-UPLOAD_FOLDER = "uploads"
-# IMPORTANT: This key is a placeholder. You must use your valid key here.
+UPLOAD_FOLDER = "uploads"
 GEMINI_API_KEY = "YOUR_API_KEY" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
