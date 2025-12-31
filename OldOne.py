@@ -2,8 +2,6 @@ from flask import Flask, render_template_string, request
 import os, hashlib, re
 from google import genai
 from google.genai.errors import APIError 
-
-RR 
 
 # CONFIGURATION
 
