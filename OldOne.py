@@ -17,7 +17,7 @@ except Exception as e:
     print(f"Error initializing Gemini client: {e}")
     client = None
 
-
+#start
 # ============================
 # FLASK SETUP
 # ============================
