@@ -17,6 +17,8 @@ import pyperclip
 ##==> IMPORT UI FILES
 ##______
 ##
+
+##_____1123
 ####################################################
 from ui import rc_resource
 from ui.spectrum_ui_main import Ui_MainWindow as SpectrumSecurityWindow
