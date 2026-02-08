@@ -21,7 +21,7 @@ import pyperclip
 ##==> IMPORT UI FILES
 ##______
 ##
-
+##122
 ##_____1123
 ####################################################
 from ui import rc_resource
