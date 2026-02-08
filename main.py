@@ -7,6 +7,8 @@ import os
 ##
 
 ##11111222223333344444
+
+##123
 import sys, psutil, GPUtil, easygui, threading
 from winreg import *
 from PySide6 import QtWidgets, QtCore, QtGui
