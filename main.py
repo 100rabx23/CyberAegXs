@@ -13,7 +13,7 @@ from PySide6.QtMultimedia import QSoundEffect
 from PySide6.QtGui import QFont
 import pyperclip
 ##==> IMPORT UI FILES
-
+##______
 ##
 ####################################################
 from ui import rc_resource
