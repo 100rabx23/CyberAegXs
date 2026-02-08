@@ -115,7 +115,7 @@ class MainWindow(QMainWindow):
 
 		gpus = GPUtil.getGPUs()
 
-
+##@@@1113456
 		with DB() as db:
 			lang = bool(db.get_programm_settings('Language')[0])
 
