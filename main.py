@@ -13,6 +13,8 @@ from PySide6.QtMultimedia import QSoundEffect
 from PySide6.QtGui import QFont
 import pyperclip
 ##==> IMPORT UI FILES
+
+##
 ####################################################
 from ui import rc_resource
 from ui.spectrum_ui_main import Ui_MainWindow as SpectrumSecurityWindow
