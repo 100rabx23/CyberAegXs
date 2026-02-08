@@ -70,6 +70,10 @@ class MainWindow(QMainWindow):
 
 		self.ui.bottom_menu_scroll_area.installEventFilter(self)
 
+
+
+
+###123
 		self.ui.bottom_menu_home.installEventFilter(self)
 		self.ui.bottom_menu_scanning.installEventFilter(self)
 		self.ui.bottom_menu_virus_storage.installEventFilter(self)
