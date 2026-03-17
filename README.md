@@ -39,7 +39,6 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 ![CyberDoc Scanner Demo](screenshot.png)  
 
 > Modern, clean interface with instant scan results.
-
 ---
 
 ## Installation
