@@ -20,13 +20,11 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
 - [How It Works](#how-it-works)
 - [Example Output](#example-output)
 - [Tech Stack](#tech-stack)
-- [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 ```
 ---
-
 ## Features
+
 
 - 🔹 Upload and scan documents (`.pdf`, `.docx`, `.xlsx`)  
 - 🔹 Compute MD5, SHA1, SHA256 hashes  
@@ -51,5 +49,4 @@ Scan PDF, DOCX, XLSX, and other documents for suspicious keywords, generate cryp
    git clone https://github.com/100rabx23/CyberAegXs.git
    cd CyberAegXs
 
-
-updated!
+2. New one is added in the another repo "Cyberagxxx"
