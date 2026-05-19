@@ -3,7 +3,7 @@ import hashlib, pefile, array, math
 import pickle, joblib
 
 from db import DB
-
+#
 
 class ScanVirusAI:
 	def get_entropy(self, data):
