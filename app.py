@@ -6,7 +6,7 @@ def create_clean_pdf(filename, content, i):
     """Creates a basic, text-only PDF using reportlab."""
 
 
-#this may have bug
+#this may have bug!!
 
 
 
