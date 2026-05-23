@@ -215,7 +215,7 @@ class ScanVirus(ScanVirusAI):
 
 			btn.setEnabled(True)
 
-
+########
 
 		elif status == 'file':
 			self.scanning(path)
