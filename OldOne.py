@@ -7,6 +7,10 @@ UPLOAD_FOLDER = "uploads"
 GEMINI_API_KEY = "YOUR_API_KEY" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+
+
+#try this ice
+
 # Initialize the Gemini Client
 try:
     # Ensure client initialization is attempted even with a placeholder key
