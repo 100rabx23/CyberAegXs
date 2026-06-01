@@ -7,7 +7,7 @@ def create_clean_pdf(filename, content, i):
 
 # 12345----
 
-#@@@@@@@@@@@@@@@@
+
 
     try:
         c = canvas.Canvas(filename, pagesize=letter)
