@@ -8,6 +8,8 @@ class DB(object):
 		self.create_tables()
 		self.programm_settings()
 
+
+#new function 
 	def __enter__(self):
 		return self
 
