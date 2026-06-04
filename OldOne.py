@@ -16,10 +16,7 @@ try:
     client = genai.Client(api_key=GEMINI_API_KEY)
 except Exception as e:
     print(f"Error initializing Gemini client: {e}")
-    client = None
-
-
-# FLASK SETUP
+    client = None
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
