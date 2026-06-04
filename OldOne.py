@@ -20,8 +20,7 @@ except Exception as e:
 
 #start
 # ============================
-# FLASK SETUP
-# ============================
+# FLASK SETUP
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
