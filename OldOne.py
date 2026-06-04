@@ -9,7 +9,6 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
 
-#try this ice
 
 # Initialize the Gemini Client
 try:
