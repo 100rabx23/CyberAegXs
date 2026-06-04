@@ -19,7 +19,7 @@ except Exception as e:
     client = None
 
 #start
-# ============================
+
 # FLASK SETUP
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
