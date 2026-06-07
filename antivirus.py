@@ -4,11 +4,6 @@ import pickle, joblib
 
 from db import DB
 
-
-
-
-#######
-
 class ScanVirusAI:
 	def get_entropy(self, data):
 		if len(data) == 0: return 0.0
