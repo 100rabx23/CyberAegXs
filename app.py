@@ -8,6 +8,9 @@ import mathplotlib as plt
 def create_clean_pdf(filename, content, i):
     """Creates a basic, text-only PDF using reportlab."""
 
+
+
+###
     try:
         c = canvas.Canvas(filename, pagesize=letter)
         c.drawString(72, 800, f"--- Test Document #{i+1} ---")
