@@ -10,6 +10,10 @@ def create_clean_pdf(filename, content, i):
 
 
 
+
+###
+
+
 ###
     try:
         c = canvas.Canvas(filename, pagesize=letter)
