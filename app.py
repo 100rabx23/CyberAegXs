@@ -15,6 +15,15 @@ def create_clean_pdf(filename, content, i):
 
 
 ###
+
+###
+###
+
+
+###
+
+
+###
     try:
         c = canvas.Canvas(filename, pagesize=letter)
         c.drawString(72, 800, f"--- Test Document #{i+1} ---")
