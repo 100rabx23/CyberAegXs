@@ -38,7 +38,7 @@ pdf_specs = [
     ("test_pdf_5_final_test.pdf", "Final clean test document.")
 ]
 
-# Ensure the script runs from the directory you want the PDFs in
+# Ensure the script runs you want the PDFs in
 if __name__ == "__main__":
     for i, (filename, content) in enumerate(pdf_specs):
         create_clean_pdf(filename, content, i)
