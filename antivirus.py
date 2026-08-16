@@ -8,6 +8,9 @@ from db import DB
 
 
 
+#22334444
+
+
 class ScanVirusAI:
 	def get_entropy(self, data):
 		if len(data) == 0: return 0.0
