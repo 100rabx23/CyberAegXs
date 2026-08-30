@@ -6,7 +6,7 @@ from google.genai.errors import APIError
 UPLOAD_FOLDER = ""
 GEMINI_API_KEY = "" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-# Initialize the Gemini Client
+
 
 #_&&&&
 #03
