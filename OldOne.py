@@ -3,7 +3,7 @@ import os, hashlib, re
 from google import genai
 from google.genai.errors import APIError 
 
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = ""
 GEMINI_API_KEY = "" 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # Initialize the Gemini Client
