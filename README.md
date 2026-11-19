@@ -1,4 +1,4 @@
-# 🛡 CyberAegXs | Virus Scanner in any Documents!!
+ CyberAegXs | Virus Scanner in any Documents!!
 
 
 Refer the follwing link:- https://100rabx23.github.io/Cyberxxz/
