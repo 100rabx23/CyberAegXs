@@ -1,10 +1,7 @@
 
 import datetime
 import os
-
-##
-
-##123
+
 import sys, psutil, GPUtil, easygui, threading
 from winreg import *
 from PySide6 import QtWidgets, QtCore, QtGui
